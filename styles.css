@@ -1,0 +1,16 @@
+:root {
+    --color1: #1a2420;
+    --color2: #116466;
+    --color3: #D9B08C;
+    --color4: #FFCB9A;
+    --color5: #D1E8E2;
+}
+
+* {
+    background-color : var(--color1);
+    color: var(--color5);
+}
+
+.works {
+    display:flex
+}
