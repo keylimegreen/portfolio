@@ -1,6 +1,7 @@
 
 
 const myLibrary = [];
+const dialog = document.getElementById("addBookDialog");
 
 function Book(title, author) {
   this.title = title
@@ -15,7 +16,8 @@ function addBookToLibrary() {
 function displayBooks() {
 
 }
-document.addEventListener("DOMContentLoaded", function() { 
+
+window.addEventListener("load", function() { 
   const book1 = new Book('Huckleberry Fin', 'Mark Twain')
   myLibrary.push(book1)
   displayBooks()
@@ -31,4 +33,8 @@ document.addEventListener("DOMContentLoaded", function() {
   buttonSubmit.addEventListener("click", ()=> {
     addBookToLibrary()
   });
+
+  alert('loaded')
 })
+
+ alert('loaded')
