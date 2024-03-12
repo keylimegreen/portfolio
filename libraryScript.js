@@ -15,14 +15,20 @@ function addBookToLibrary() {
 function displayBooks() {
 
 }
-
-window.addEventListener("load", (event) => {
+document.addEventListener("DOMContentLoaded", function() { 
   const book1 = new Book('Huckleberry Fin', 'Mark Twain')
   myLibrary.push(book1)
   displayBooks()
-})
 
-const button = document.getElementById('add-book')
-button.addEventListener("click", ()=> {
-  dialog.showModal();
+
+
+  const buttonAdd = document.getElementById("add-book");
+  buttonAdd.addEventListener("click", ()=> {
+    dialog.showModal();
+  });
+
+  const buttonSubmit = document.getElementById("submit-btn");
+  buttonSubmit.addEventListener("click", ()=> {
+    addBookToLibrary()
+  });
 })
