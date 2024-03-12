@@ -9,6 +9,11 @@
 * {
     background-color : var(--color1);
     color: var(--color5);
+    
+    border: width 5px; 
+    border-style:solid;
+    margin: 0px;
+    padding: 0px;
 }
 
 .works {
@@ -18,4 +23,74 @@
 .flex-img {
     height:200px;
     width:200px
+}
+
+/*Library CSS */
+.navigation {
+    display:inline-grid;
+    grid-template-columns: repeat(6, 1fr);
+    width:100vw
+    
+    
+    
+}
+
+div {
+    border: black
+}
+
+.nav-link-1 {
+    margin-right:auto
+}
+
+#bookshelf-grid {
+
+    
+    display:grid;
+    z-index:10;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 0.25fr, repeat(4, 1fr);
+    overflow:hidden;
+    position:absolute;
+    left:0px;
+    top: 50px;
+    width: 99%;
+    background-color: transparent;
+    padding:15px
+
+}
+#bookshelf-container {
+    width:100%;
+    height: 100vh;
+}   
+
+#bookshelf {
+    
+    position:absolute;
+    left:0px;
+    top: 50px;
+    width: 99%;
+    overflow:hidden;
+    
+}
+
+.book {
+    background-color: transparent;
+    
+    object-fit:cover;
+    max-height:150px;    
+    
+}
+
+.book-wrapper {
+    grid-area: 1/1/2/2;
+    clip-path: inset(10px 10px 10px 10px);
+    background-color: transparent;
+    
+   
+}
+
+.add-book {
+    z-index: 15;
+    font-size: 20px;
 }
