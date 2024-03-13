@@ -9,8 +9,9 @@ function Book(title, author) {
   this.read = false
 }
 
-function addBookToLibrary() {
-  // do stuff here
+function addBookToLibrary(title,author) {
+  const newBook = new Book(title, author)
+  myLibrary.push(newBook)
 }
 
 function displayBooks() {
@@ -18,7 +19,7 @@ function displayBooks() {
 
     const bookshelf = document.getElementById("bookshelf-grid")
     const newBook = document.createElement("img")
-    newBook.class = "book"
+    newBook.classList.add("book")
     newBook.src ="old-book-spine.png" 
     newBook.alt = "book"
     newBook.book = book
@@ -26,22 +27,42 @@ function displayBooks() {
   }
 }
 
+function deleteBooks() {
+  const books = document.getElementById("bookshelf-grid")
+  while (books.firstChild) {
+    books.removeChild(books.firstChild)
+  }
+}
+
 window.addEventListener("load", function() { 
-  const book1 = new Book('Huckleberry Finn', 'Mark Twain')
-  myLibrary.push(book1)
+  const buttonAdd = document.getElementById("add-book")
+  const buttonSubmit = document.getElementById("submit-btn");
+  const buttonClose = document.getElementById("cancel");
+  const dialog = document.getElementById("addBookDialog")
+
+  addBookToLibrary('Huckleberry Finn', 'Mark Twain')
+  deleteBooks()
   displayBooks()
-  document.alert(myLibrary)
 
-
-  const buttonAdd = document.getElementById("add-book");
+  ;
   buttonAdd.addEventListener("click", ()=> {
     dialog.showModal();
   });
 
-  const buttonSubmit = document.getElementById("submit-btn");
-  buttonSubmit.addEventListener("click", ()=> {
+  
+  buttonSubmit.addEventListener("click", (event)=> {
+    event.preventDefault();
+    const dialogForm = document.getElementById("addBookDialog")
+    const formData = new FormData(dialogForm)
+    addBookToLibrary(formData.get(title),formData.get(author))
+    deleteBooks()
     addBookToLibrary()
+    dialog.close()
   });
 
+  
+  buttonClose.addEventListener("click", ()=> {
+    dialog.close()
+  })
 })
 

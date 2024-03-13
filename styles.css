@@ -82,15 +82,13 @@ div {
     
 }
 
-.book-wrapper {
-    grid-area: 1/1/2/2;
-    clip-path: inset(10px 10px 10px 10px);
-    background-color: transparent;
-    
-   
-}
-
 .add-book {
     z-index: 15;
     font-size: 20px;
+}
+
+dialog {
+    margin: 0; /* `margin: auto;` is the default. */
+ transform: translateX(-50%);
+ left: 50%;
 }
