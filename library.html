@@ -28,14 +28,14 @@
     
 
     <dialog id="addBookDialog">
-      <form method="dialog">
+      <form method="dialog" id="dialogForm">
         <p>
           <label for="book-title">Book Name:</label>
-          <input id="book-title"></input>
+          <input id="book-title" name="title"></input>
         </p>
         <p>
           <label for="book-author">Book Author:</label>
-          <input id="book-author"></input>
+          <input id="book-author" name="author"></input>
             
         </p>
         <div>
@@ -43,6 +43,10 @@
           <button type="submit" id="submit-btn">Confirm</button>
         </div>
       </form>
+    </dialog>
+    <dialog id="open-book-dialog">
+      <p></p>
+      <button id="close" type="reset">Close</button>
     </dialog>
   </body>
 </html>

@@ -24,8 +24,12 @@ function displayBooks() {
     newBook.alt = "book"
     newBook.book = book
     bookshelf.appendChild(newBook)
-  }
-}
+    newBook.addEventListener("click", ()=> {
+      alert('I got clicked!')
+      openBook(newBook)
+  })
+}}
+
 
 function deleteBooks() {
   const books = document.getElementById("bookshelf-grid")
@@ -34,7 +38,17 @@ function deleteBooks() {
   }
 }
 
+function openBook(childBook) {
+  const dialogOpenBook = document.querySelector("#open-book-dialog>p")
+    const book = childBook.book
+    dialogOpenBook.textContent= "Book title is ${book.title} and author is ${book.author}."
+    dialogOpenBook.showModal()
+
+  
+}
+
 window.addEventListener("load", function() { 
+  const bookshelf = document.getElementById("bookshelf-grid")
   const buttonAdd = document.getElementById("add-book")
   const buttonSubmit = document.getElementById("submit-btn");
   const buttonClose = document.getElementById("cancel");
@@ -44,7 +58,24 @@ window.addEventListener("load", function() {
   deleteBooks()
   displayBooks()
 
-  ;
+  
+  const config = { childList: true};
+  const callback = (mutationList, observer) => {
+    for (const mutation of mutationList) {
+      if (mutation.type === "childList") {
+        console.log("A child node has been added or removed.");
+        for (child in bookshelf.children) {
+          child.addEventListener("click", ()=> {
+            openBook(child)
+          })
+        }
+      }
+    }
+  };
+
+  const observer = new MutationObserver(callback);
+  observer.observe(bookshelf, config);
+
   buttonAdd.addEventListener("click", ()=> {
     dialog.showModal();
   });
@@ -52,11 +83,12 @@ window.addEventListener("load", function() {
   
   buttonSubmit.addEventListener("click", (event)=> {
     event.preventDefault();
-    const dialogForm = document.getElementById("addBookDialog")
+    const dialogForm = document.getElementById("dialogForm")
     const formData = new FormData(dialogForm)
-    addBookToLibrary(formData.get(title),formData.get(author))
+    addBookToLibrary(formData.get("title"),formData.get("author"))
     deleteBooks()
-    addBookToLibrary()
+    displayBooks()
+    dialogForm.reset()
     dialog.close()
   });
 
