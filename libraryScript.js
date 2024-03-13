@@ -21,15 +21,16 @@ function displayBooks() {
     newBook.class = "book"
     newBook.src ="old-book-spine.png" 
     newBook.alt = "book"
-    bookshelf.appendChild(book)
+    newBook.book = book
+    bookshelf.appendChild(newBook)
   }
 }
 
 window.addEventListener("load", function() { 
-  const book1 = new Book('Huckleberry Fin', 'Mark Twain')
+  const book1 = new Book('Huckleberry Finn', 'Mark Twain')
   myLibrary.push(book1)
   displayBooks()
-
+  document.alert(myLibrary)
 
 
   const buttonAdd = document.getElementById("add-book");
