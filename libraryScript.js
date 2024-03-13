@@ -14,7 +14,15 @@ function addBookToLibrary() {
 }
 
 function displayBooks() {
+  for(let book of myLibrary) {
 
+    const bookshelf = document.getElementById("bookshelf-grid")
+    const newBook = document.createElement("img")
+    newBook.class = "book"
+    newBook.src ="old-book-spine.png" 
+    newBook.alt = "book"
+    bookshelf.appendChild(book)
+  }
 }
 
 window.addEventListener("load", function() { 
@@ -34,7 +42,5 @@ window.addEventListener("load", function() {
     addBookToLibrary()
   });
 
-  alert('loaded')
 })
 
- alert('loaded')
