@@ -1,0 +1,37 @@
+* {
+    border-color: black;
+    border-style:solid
+}
+header {
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align:center;
+}
+
+#gameboard {
+    display:grid;
+    padding:50px;
+    
+}
+
+.box {
+    margin-top: 10px;
+    display:flex;
+
+}
+
+#reset {
+
+}
+
+#game-nav {
+    width:20%;
+}
+
+#info-board {
+    width:20%;
+}
+
+#middle-box {
+    width:60%;
+}

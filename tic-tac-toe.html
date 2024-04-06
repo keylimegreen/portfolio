@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="tic-tac-toe.css" />
+  </head>
+  <body>
+    <header>Tic Tac Toe Game</header>
+    <div class="box">
+      <div id="game-nav">
+        <div id="rename">Rename Players</div>
+        <div id="reset">Reset Game</div>
+      </div>
+      <div id="middle-box">
+        <div id="'status-bar">Status Bar: New Game!</div>
+        <div id="gameboard"></div>
+      </div>
+      <div id="info-board">
+        <header>Game Information</header>
+        <div>Player 1</div>
+        <div>Player 2</div>
+      </div>
+    </div>
+    <dialog id="rename-dialog">
+      <form>
+        <header>Rename Players</header>
+        <label for="rename-p1">Rename Player 1:</label>
+        <input id="rename-p1" name="rename-p1" type="text" />
+        <label for="rename-p2">Rename Player 2:</label>
+        <input id="rename-p2" name="rename-p2" type="text" />
+        <button type="reset">Cancel</button>
+        <button type="submit" id="rename-submit-btn">Submit</button>
+      </form>
+    </dialog>
+  </body>
+</html>

@@ -15,19 +15,20 @@ function addBookToLibrary(title,author) {
 }
 
 function displayBooks() {
-  for(let book of myLibrary) {
+  for(let book in myLibrary) {
 
-    const bookshelf = document.getElementById("bookshelf-grid")
-    const newBook = document.createElement("img")
-    newBook.classList.add("book")
-    newBook.src ="old-book-spine.png" 
-    newBook.alt = "book"
-    newBook.book = book
-    bookshelf.appendChild(newBook)
+    const bookshelf = document.getElementById("bookshelf-grid");
+    const newBook = document.createElement("img");
+    newBook.classList.add("book");
+    newBook.src ="old-book-spine.png" ;
+    newBook.alt = "book";
+    newBook.dataset.book = book;
+    
     newBook.addEventListener("click", ()=> {
       alert('I got clicked!')
-      openBook(newBook)
+      openBook(newBook.dataset.book)
   })
+  bookshelf.appendChild(newBook)
 }}
 
 
@@ -38,13 +39,17 @@ function deleteBooks() {
   }
 }
 
-function openBook(childBook) {
+function openBook(bookNumber) {
   const dialogOpenBook = document.querySelector("#open-book-dialog>p")
-    const book = childBook.book
-    dialogOpenBook.textContent= "Book title is ${book.title} and author is ${book.author}."
-    dialogOpenBook.showModal()
-
+  const dialog = document.getElementById("open-book-dialog")
+  dialog.dataset.book = bookNumber
+    dialogOpenBook.textContent= "Book title is " + myLibrary[bookNumber].title + " and author is " + myLibrary[bookNumber].author + "."
+    dialog.showModal()
   
+}
+
+function deleteBook(bookNumer) {
+  myLibrary.splice(bookNumer, 1)
 }
 
 window.addEventListener("load", function() { 
@@ -59,22 +64,7 @@ window.addEventListener("load", function() {
   displayBooks()
 
   
-  const config = { childList: true};
-  const callback = (mutationList, observer) => {
-    for (const mutation of mutationList) {
-      if (mutation.type === "childList") {
-        console.log("A child node has been added or removed.");
-        for (child in bookshelf.children) {
-          child.addEventListener("click", ()=> {
-            openBook(child)
-          })
-        }
-      }
-    }
-  };
-
-  const observer = new MutationObserver(callback);
-  observer.observe(bookshelf, config);
+  
 
   buttonAdd.addEventListener("click", ()=> {
     dialog.showModal();
@@ -96,5 +86,20 @@ window.addEventListener("load", function() {
   buttonClose.addEventListener("click", ()=> {
     dialog.close()
   })
+
+  const close = document.getElementById("open-book-dialog")
+  close.addEventListener("click" , ()=> {
+    close.close()
+  })
+
+  const deleteBtn= document.getElementById("delete")
+  deleteBtn.addEventListener("click", (event)=> {
+    deleteBook(document.getElementById("open-book-dialog").dataset.book)
+    deleteBooks()
+    displayBooks()
+    
+
+  })
+
 })
 
