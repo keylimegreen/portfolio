@@ -13,6 +13,7 @@ class Gameboard {
             }
             this.gameboard.push(nextRow)
         }
+        console.log(this.gameboard)
     } 
      
     gameboard() {
@@ -58,11 +59,19 @@ class Gameboard {
         const gameboard = document.getElementById("gameboard");
         const board = this.gameboard()
         gameboard.innerText = board
+        console.log(board)
         gameboard.style.gridTemplateColumns = "1fr".repeat(this.col)
         gameboard.style.gridTemplateRows = "1fr".repeat(this.row)
 
     }
+
+    newStatus(update) {
+        const status = document.getElementById("status-bar")
+        status.innerText = update
+    }
 }
+
+
 
 window.addEventListener("load", ()=> {
     
@@ -78,17 +87,17 @@ window.addEventListener("load", ()=> {
 
     resetBtn.addEventListener("click", () => {
         gameboard = new Gameboard()
-        console.log("new game")
+        gameboard.newStatus("new game")
     })
     
     renameBtn.addEventListener("click", () => {
         renameDialog.showModal()
-        console.log("rename")
+        gameboard.newStatus("Renamed!")
     })
 
     renameSubmitBtn.addEventListener("click", (event) => {
         event.preventDefault()
     })
 
-    console.log("loaded")
+    gameboard.newStatus("Loaded!")
 })
