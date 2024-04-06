@@ -13,6 +13,7 @@ class Gameboard {
             }
             this.gameboard.push(nextRow)
         }
+
         console.log(this.gameboard)
     } 
      
@@ -49,6 +50,10 @@ class Gameboard {
     rename(p1,p2) {
         this.player1 = p1
         this.player2 = p2
+        const p1text = document.getElementById("player-1")
+        p1text.innerText = this.player1
+        const p2text = document.getElementById("player-1")
+        p2text.innerText = this.player2
     }
 
     reset() {
@@ -82,6 +87,7 @@ window.addEventListener("load", ()=> {
     const renameSubmitBtn = document.getElementById("rename-submit-btn")
     
     gameboard.displayBoard()
+    gameboard.rename("Player1", "Player2")
     
     
 
