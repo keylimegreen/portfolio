@@ -1,17 +1,46 @@
+:root {
+    --row: '3';
+    --col: '3';
+}
+
+
 * {
     border-color: black;
-    border-style:solid
+    border-style:solid;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
 }
 header {
     font-size: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align:center;
 }
 
 #gameboard {
     display:grid;
     padding:50px;
+    height: 60vh;
     
+}
+
+#gameboard > div {
+    align-content: center;
+
+}
+
+div[data-row='1'] {
+    border-top-style: none;
+}
+
+div[data-col='1'] {
+    border-left-style: none;
+}
+
+div[data-row='3'] {
+    border-bottom-style: none;
+}
+
+div[data-col='3'] {
+    border-right-style: none;
 }
 
 .box {
