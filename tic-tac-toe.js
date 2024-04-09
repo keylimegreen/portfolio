@@ -17,7 +17,7 @@ class Gameboard {
             this.gameboard.push(nextRow)
         }
         this.rename(this.p1name, this.p2name)
-        console.log(this.gameboard)
+        //console.log(this.gameboard)
         this.displayBoard()
         this.newStatus(`${this.p1name}'s turn.`)
     } 
@@ -35,18 +35,27 @@ class Gameboard {
     }
 
     move(row, col) {
-        alert(`row is: ${row} and column is: ${col}`)
         if (this.validateTurn(row, col )) {
+            this.gameboard[row-1][col-1] = this.currentTurn
+            this.displayBoard()
             if (this.checkWin() ) {
-                alert(`${this.currentTurn} wins!`)
+                this.winner()
             } else {
-                this.gameboard[row-1][col-1] = this.currentTurn
+                
                 this.nextTurn()
-                this.displayBoard()
-                console.log(this.gameboard) 
+                
+                //console.log(this.gameboard) 
             }
         } else {
             alert("Invalid turn")
+        }
+    }
+
+    winner() {
+        this.newStatus(`${this.currentTurn} wins!`)
+        const board = document.getElementById("gameboard")
+        while (board.firstChild) {
+            board.firstChild.removeEventListener()
         }
     }
 
@@ -59,19 +68,52 @@ class Gameboard {
     } 
 
     checkWin() {
-        function allEqual(arr) {
-            return new Set(arr).size == 1;
-          }
+        
 
-        let checkArr = []
+        let horizontalArr = []
+        let verticalArr = []
+        let crossArr = []
+        //console.log(this.gameboard)
         for (let i = 0; i < this.row; i++) {
-            if (allEqual(this.gameboard[i])) {
-                return true
-
+            horizontalArr.push(this.gameboard[i])
+            
+            for (let j = 0; j < this.col; j++) {
+                if (verticalArr[j]) {
+                    verticalArr[j].push(this.gameboard[i][j])
+                } else {
+                    verticalArr[j] = [this.gameboard[i][j]]
+                }
+                
             }
-        }
 
+            let z = i
+            
+            if (crossArr.length != 0) {
+                //console.log('oops')
+                crossArr[0].push(this.gameboard[i][z])
+                z++
+                crossArr[1].push(this.gameboard[i].at(-z))
+                
+                
+            } else {
+                crossArr.push([this.gameboard[i][z]])
+                z++
+                crossArr.push([this.gameboard[i].at(-z)])
+                
+            }
+            
+        }
+        
+        const allArr = [...horizontalArr,...verticalArr,...crossArr]
+        //console.log(allArr)
+        for(let i = 0; i < allArr.length; i++) {
+            let testSet = new Set(allArr[i])
+            if (testSet.has(0)) continue
+            else if (testSet.size == 1) return true
+            //if (testSet.size == 1 && testSet.values()
+        }
         return false
+        
     }
 
     rename(p1,p2) {
