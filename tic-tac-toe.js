@@ -64,9 +64,25 @@ class Gameboard {
         const gameboard = document.getElementById("gameboard");
         const board = this.gameboard()
         gameboard.innerText = board
-        console.log(board)
-        gameboard.style.gridTemplateColumns = "1fr".repeat(this.col)
-        gameboard.style.gridTemplateRows = "1fr".repeat(this.row)
+        alert(board)
+        gameboard.style.gridTemplateColumns = "1fr ".repeat(this.col)
+        gameboard.style.gridTemplateRows = "1fr ".repeat(this.row)
+        
+        for (let i = 1; i <= this.row; i++) {
+            for (let j = 1; j <= this.col; j++) {
+                let boardBox = document.createElement("div")
+                boardBox.dataset.row = i
+                boardBox.dataset.col = j
+                boardBox.addEventListener("click", ()=> {
+                    this.move(boardBox.dataset.row,boardBox.dataset.col)
+                    alert(`row is: ${boardBox.dataset.row} and column is: ${boardBox.dataset.row}`)
+                })
+                gameboard.appendChild(boardBox)
+
+            }
+            
+        }
+        
 
     }
 
@@ -88,7 +104,6 @@ window.addEventListener("load", ()=> {
     
     gameboard.displayBoard()
     gameboard.rename("Player1", "Player2")
-    
     
 
     resetBtn.addEventListener("click", () => {
